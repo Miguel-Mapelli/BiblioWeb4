@@ -1,93 +1,79 @@
-# BiblioWeb — protótipo acadêmico
+# BiblioWeb — novo protótipo acadêmico
 
-Protótipo navegável de biblioteca virtual desenvolvido para a disciplina de **Interação Humano-Computador**. O projeto funciona diretamente no navegador, sem instalação, servidor ou banco de dados remoto.
+Protótipo front-end de um sistema acadêmico de biblioteca, desenvolvido do zero com HTML, CSS e JavaScript puro. Inspirado nos fluxos públicos do Pergamum: catálogo online, pesquisa simples e avançada, consulta de exemplares e localização, área do usuário (“Meu BiblioWeb”), empréstimos, renovações, reservas, histórico e área administrativa para catalogação e circulação.
+
+> **Importante:** este projeto é uma simulação acadêmica. Não possui backend, banco de dados remoto, autenticação segura, envio de e-mails nem integração com o Pergamum. Os dados são fictícios e ficam no `localStorage` do navegador.
 
 ## Como executar
 
-1. Extraia a pasta `BiblioWeb-main`.
-2. Abra o arquivo `index.html` em um navegador atualizado (Chrome, Edge ou Firefox).
-3. Escolha o perfil **Estudante** ou **Bibliotecário(a)**.
-4. Entre com uma das contas de demonstração abaixo ou informe outro nome/e-mail. A senha pode ser qualquer texto fictício.
+1. Extraia a pasta `BiblioWeb-Novo`.
+2. Abra `index.html` em um navegador atualizado (Chrome, Edge ou Firefox).
+3. Não é necessário instalar dependências ou iniciar servidor.
+4. Para zerar os dados, use **Restaurar dados de demonstração** no rodapé.
 
-### Contas de demonstração
+## Contas de demonstração
 
-| Perfil | Nome | E-mail |
-|---|---|---|
-| Estudante | Ana Souza | `ana@biblioweb.local` |
-| Estudante | Bruno Lima | `bruno@biblioweb.local` |
-| Bibliotecário | Marina Costa | `marina@biblioweb.local` |
+A senha é apenas ilustrativa: digite qualquer valor. O protótipo valida a matrícula/e-mail e o perfil selecionado, não a senha.
 
-Use qualquer senha fictícia. O protótipo não verifica senha; o e-mail e o perfil identificam a conta dentro do navegador. **Não informe senhas reais.**
+| Perfil | Nome | Matrícula | E-mail |
+|---|---|---|---|
+| Estudante | Ana Clara Souza | `2024001` | `ana@biblioweb.local` |
+| Estudante | Bruno Martins | `2024002` | `bruno@biblioweb.local` |
+| Bibliotecária | Marina Oliveira | `BIB001` | `marina@biblioweb.local` |
+| Estudante | Lucas Ferreira | `2024003` | `lucas@biblioweb.local` |
+| Estudante | Camila Rocha | `2024004` | `camila@biblioweb.local` |
 
-> Se você já abriu uma versão anterior do BiblioWeb neste navegador, use **Reiniciar demonstração** no rodapé para carregar os dados iniciais desta versão. Essa ação apaga as alterações locais atuais.
+## Funcionalidades incluídas
 
-## Funcionalidades do estudante
+### Catálogo público
+- Pesquisa por todos os campos, título, autor, assunto, editora e ISBN.
+- Pesquisa avançada por tipo, assunto, ano e disponibilidade.
+- Ordenação por relevância, título ou ano; visualização em grade ou lista.
+- Detalhes bibliográficos e lista de exemplares com situação e localização.
+- Cesta de materiais e impressão da lista.
 
-- Página inicial com destaques, atalhos e navegação por categorias.
-- Busca por título, autor, editora, ISBN, ano e categoria.
-- Filtros combináveis por gênero e ordenação de novidades.
-- Detalhes do livro, sinopse, ficha técnica e disponibilidade.
-- Empréstimo demonstrativo por 15 dias, com limite de 3 empréstimos ativos por conta.
-- Reserva em fila quando o título está emprestado; bloqueio de reservas duplicadas.
-- Área Minha Conta com empréstimos ativos, reservas, renovação e histórico de devoluções.
-- Renovação de 7 dias, uma vez por empréstimo, quando não há atraso nem fila de reserva.
-- Cancelamento de reserva e atualização da fila.
+### Área do estudante
+- Resumo da conta, empréstimos, reservas, histórico e dados cadastrais.
+- Renovação de empréstimos conforme as regras locais.
+- Solicitação e cancelamento de reservas quando todos os exemplares estão emprestados.
+- Fila de espera e aviso visual de material liberado para retirada.
 
-## Funcionalidades do bibliotecário
+### Área da biblioteca
+- Cadastro, edição e exclusão de títulos.
+- Inclusão de exemplares físicos por título.
+- Registro de empréstimos e devoluções.
+- Gestão de fila de reservas e confirmação de retirada.
+- Cadastro e ativação/desativação de usuários.
+- Indicadores simples e exportação/importação de backup JSON.
+- Configuração de prazo, limite de empréstimos e renovações.
 
-- Painel com indicadores de acervo, empréstimos ativos, atrasos, reservas e contas demonstrativas.
-- Registro de atividades recentes.
-- Cadastro, edição, pesquisa e exclusão de títulos, com validação para impedir exclusão de livro com movimentação vinculada.
-- Gerenciamento de empréstimos, confirmação de devolução e identificação de atrasos.
-- Fila de reservas, prioridade de retirada por 3 dias e confirmação da retirada.
-- Área de contas demonstrativas: pesquisa, consulta de perfil e ativação/desativação de contas criadas no navegador.
-- Exportação dos dados para arquivo JSON e importação de backup JSON.
+## Regras simuladas
 
-## Regras demonstrativas
+- Prazo padrão: 14 dias.
+- Limite: 3 empréstimos ativos por estudante.
+- Renovação: até 2 vezes, se não houver atraso nem reserva pendente para o título.
+- Reserva: somente quando não há exemplar disponível.
+- Retirada da reserva liberada: 2 dias corridos; ao expirar, a fila avança para o próximo usuário.
+- O mesmo estudante não pode manter dois empréstimos ativos do mesmo título.
 
-- Cada título representa **um exemplar físico**. Não há controle de múltiplas cópias do mesmo título.
-- O empréstimo padrão dura 15 dias e cada conta pode manter até 3 empréstimos ativos.
-- Cada empréstimo pode ser renovado uma vez por mais 7 dias, desde que não esteja atrasado e não exista reserva pendente.
-- Quando um exemplar é devolvido e há fila, a primeira pessoa recebe prioridade por 3 dias. O bibliotecário confirma a retirada para iniciar o novo empréstimo.
-- Se o prazo de retirada expirar, a reserva é cancelada e a próxima pessoa da fila recebe prioridade por 3 dias. Se não houver outra reserva nem empréstimo ativo, o título volta a ficar disponível.
-- Os dados iniciais incluem títulos, contas, empréstimos, uma devolução atrasada e uma reserva para facilitar a apresentação.
+As regras são parâmetros fictícios de demonstração e podem ser ajustadas na área administrativa.
 
-## Roteiro rápido para apresentação
+## Roteiro rápido para apresentar
 
-1. Entre como estudante com `ana@biblioweb.local` e consulte **Minha Conta** para mostrar empréstimos e atraso.
-2. Busque `1984`, abra os detalhes e mostre que o livro está emprestado e pode ser reservado.
-3. Saia e entre como estudante com `bruno@biblioweb.local` para mostrar a posição na fila de reserva.
-4. Entre como bibliotecário com `marina@biblioweb.local` e abra **Empréstimos**.
-5. Confirme a devolução de `1984`; a reserva de Bruno deverá ficar pronta para retirada.
-6. Confirme a retirada da reserva para iniciar um novo empréstimo de 15 dias.
-7. Em **Gerenciar livros**, cadastre um título de teste, edite-o e depois exclua-o.
-8. Em **Usuários**, pesquise as contas e teste ativar/desativar uma conta de demonstração.
-9. No **Painel**, exporte os dados para JSON. Para recuperar uma cópia, use Importar backup.
+1. Abra o catálogo e pesquise “programação”.
+2. Abra os detalhes de um livro e mostre a localização e disponibilidade de cada exemplar.
+3. Entre como Ana (`2024001`) e mostre empréstimos, renovação e histórico.
+4. Saia e entre como Marina (`BIB001`, perfil Bibliotecário).
+5. Cadastre um título e acrescente um exemplar; registre um empréstimo para um estudante.
+6. Registre uma devolução e mostre a fila de reservas quando aplicável.
+7. Abra Relatórios e exporte o backup JSON.
 
-## Experiência e acessibilidade
+## Estrutura
 
-- Layout responsivo e identidade visual consistente.
-- Tema claro/escuro com preferência salva no navegador.
-- Estados vazios, mensagens de feedback e confirmações para ações importantes.
-- Ajuda contextual e orientação inicial.
-- Foco visível, rótulos acessíveis e navegação por botões.
-- Design tokens CSS para cores, tipografia, espaçamentos, raios, sombras e movimento.
+- `index.html` — estrutura das páginas e componentes.
+- `styles.css` — identidade visual, componentes e responsividade.
+- `app.js` — dados de demonstração, navegação, regras e persistência local.
 
-## Dados, privacidade e limitações
+## Referência funcional e limites de inspiração
 
-- Acervo, contas e movimentações ficam no `localStorage` do navegador; a sessão usa `sessionStorage`.
-- Os dados não são compartilhados entre dispositivos ou navegadores.
-- O login é uma simulação local. Não existe validação de senha, criptografia de credenciais, backend ou autorização segura no servidor.
-- A desativação de conta e as regras de negócio são demonstrações no lado do cliente, não mecanismos de segurança.
-- Capas externas da Open Library dependem de conexão; se não carregarem, o sistema mantém as capas gráficas de fallback.
-- O protótipo não substitui um sistema de biblioteca real.
-
-## Estrutura dos arquivos
-
-- `index.html`: estrutura, componentes e templates das telas.
-- `style.css`: identidade visual, tokens, componentes e responsividade.
-- `script.js`: dados de demonstração, estado, persistência e regras de interação.
-
-## Reiniciar a demonstração
-
-Use **Reiniciar demonstração** no rodapé. A confirmação restaura o acervo e as movimentações iniciais, removendo as alterações salvas neste navegador.
+A organização dos fluxos foi inspirada nas funcionalidades publicamente descritas para o Pergamum, sem copiar código, marca ou telas proprietárias. O Pergamum é um produto real de gestão de informação; este BiblioWeb é apenas um protótipo independente e simplificado.
